@@ -14,6 +14,7 @@
 #include "AP_BattMonitor_FuelLevel_PWM.h"
 #include "AP_BattMonitor_Generator.h"
 #include "AP_BattMonitor_MPPT_PacketDigital.h"
+#include "AP_BattMonitor_MPPT_LT8491_DC2703A.h"
 
 #include <AP_HAL/AP_HAL.h>
 
@@ -155,6 +156,8 @@ AP_BattMonitor::init()
                                                                     hal.i2c_mgr->get_device(_params[instance]._i2c_bus, AP_BATTMONITOR_SMBUS_I2C_ADDR,
                                                                                             100000, true, 20));
                 break;
+            case Type::MPPT_LT8491_DC2703A:
+                drivers[instance] = new 
 #endif // HAL_BATTMON_SMBUS_ENABLE
             case Type::BEBOP:
 #if CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_BEBOP || CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_DISCO
