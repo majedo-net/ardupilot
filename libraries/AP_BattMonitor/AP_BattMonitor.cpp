@@ -157,7 +157,9 @@ AP_BattMonitor::init()
                                                                                             100000, true, 20));
                 break;
             case Type::MPPT_LT8491_DC2703A:
-                drivers[instance] = new 
+                drivers[instance] = new AP_BattMonitor_MPPT_LT8491_DC2703A(*this, state[instance], _params[instance],
+                                                                    hal.i2c_mgr->get_device(_params[instance]._i2c_bus, AP_BATTMONITOR_LT8491_I2C_ADDR,
+                                                                                            100000, false, 20));
 #endif // HAL_BATTMON_SMBUS_ENABLE
             case Type::BEBOP:
 #if CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_BEBOP || CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_DISCO

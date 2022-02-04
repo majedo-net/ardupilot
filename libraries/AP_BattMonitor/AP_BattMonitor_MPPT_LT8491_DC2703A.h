@@ -13,11 +13,24 @@ class AP_BattMonitor_MPPT_LT8491_DC2703A : public AP_BattMonitor_Backend
 {
 public:
 
-    // Smart Battery Data Specification Revision 1.1
+    // I2C Registers
     enum BATTMONITOR_LT8491 {
-        
+       BATTMONITOR_LT8491_TELE_TBAT = 0x00,     // Temperature 
+       BATTMONITOR_LT8491_TELE_POUT = 0x02,     // Output Power
+       BATTMONITOR_LT8491_TELE_PIN  = 0x04,     // Input Power
+       BATTMONITOR_LT8491_TELE_EFF  = 0x06,     // Charger efficiency
+       BATTMONITOR_LT8491_TELE_IOUT = 0x08,     // Output current
+       BATTMONITOR_LT8491_TELE_IIN  = 0x0A,     // Input current
+       BATTMONITOR_LT8491_TELE_VBAT = 0x0C,     // Battery voltage
+       BATTMONITOR_LT8491_TELE_VIN  = 0x0E,     // Input voltage measured from the FBIN pin
+       BATTMONITOR_LT8491_TELE_VINR = 0x10,     // Input voltage measured from VINR pin 
     };
 
+    struct MPPT_TELE{
+        float voltage;
+        float current;
+        float power;
+    } input, output;
     /// Constructor
     AP_BattMonitor_MPPT_LT8491_DC2703A(AP_BattMonitor &mon,
                     AP_BattMonitor::BattMonitor_State &mon_state,
